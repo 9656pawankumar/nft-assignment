@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useEthersSigner } from "../../getSigner";
 import { ethers } from "ethers";
-import NFTMarketplaceABI from "../../abi.json";
+import NFTMarketplaceABI from "../../abi721.json";
 
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
@@ -27,7 +27,7 @@ export default function AddMoreNFT({
     try {
       if (!signer) return;
       const contract = new ethers.Contract(
-        "0xee15c5d1b8a4464fa26e7ccf0a96d3e6a32bb512",
+        "0xe5515f30168bb173d155dcba4f1e26a69cf79b88",
         NFTMarketplaceABI,
         signer
       );
