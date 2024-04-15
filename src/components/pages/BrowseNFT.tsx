@@ -33,6 +33,10 @@ import {
 } from "../../components/ui/drawer";
 import AddMoreNFT from "../my/AddMoreNFT";
 
+interface Token {
+  tokenURI: string; // Add other properties as needed
+}
+
 export default function BrowseNFT() {
   const signer = useEthersSigner();
   const [nftCollections, setNftCollections] = useState<any>();
@@ -155,7 +159,7 @@ export default function BrowseNFT() {
                     ))}
                   </TableCell>
 
-                  <TableCell className="text-center">
+                  {/* <TableCell className="text-center">
                     <Dialog>
                       <DialogTrigger>
                         <button className="px-4 py-1 rounded bg-amber-600 hover:bg-amber-500 hover:scale-105 transition">
@@ -198,6 +202,86 @@ export default function BrowseNFT() {
                         </DialogHeader>
                       </DialogContent>
                     </Dialog>
+                  </TableCell> */}
+                  <TableCell className="text-center">
+                    <button
+                      className="px-4 py-1 rounded bg-amber-600 hover:bg-amber-500 hover:scale-105 transition"
+                      onClick={() => {
+                        const dialog = document.getElementById(
+                          `viewCollectionDialog-${id}`
+                        );
+                        if (dialog instanceof HTMLDialogElement) {
+                          dialog.showModal();
+                        }
+                      }}
+                    >
+                      View entire collection
+                    </button>
+                    <dialog
+                      id={`viewCollectionDialog-${id}`}
+                      className="rounded p-5"
+                    >
+                      <h2 className="text-lg font-semibold">NFTs</h2>
+                      <div className="grid grid-cols-3 gap-4">
+                        {nc.tokens.map((token: Token, index: number) => (
+                          <img
+                            key={index}
+                            className="rounded"
+                            width={500}
+                            src={token.tokenURI}
+                            alt={`Token image ${index}`}
+                          />
+                        ))}
+                      </div>
+                      <button
+                        onClick={() => {
+                          const dialog = document.getElementById(
+                            `viewCollectionDialog-${id}`
+                          );
+                          if (dialog instanceof HTMLDialogElement) {
+                            dialog.close();
+                          }
+                        }}
+                        className="px-4 py-1 mt-3 rounded bg-red-500 hover:bg-red-400 transition"
+                      >
+                        Close
+                      </button>
+                    </dialog>
+                  </TableCell>
+
+                  <TableCell className="text-center">
+                    <button
+                      className="text-white hover:scale-105 transition"
+                      onClick={() => {
+                        const dialog = document.getElementById(
+                          `addMoreDialog-${id}`
+                        );
+                        if (dialog instanceof HTMLDialogElement) {
+                          dialog.showModal();
+                        }
+                      }}
+                    >
+                      Add more
+                    </button>
+                    <dialog id={`addMoreDialog-${id}`} className="rounded p-5">
+                      <h2 className="text-lg font-semibold">Select images</h2>
+                      <div>
+                        <AddMoreNFT collectionID={id + 1} />
+                      </div>
+                      <button
+                        onClick={() => {
+                          const dialog = document.getElementById(
+                            `addMoreDialog-${id}`
+                          );
+                          if (dialog instanceof HTMLDialogElement) {
+                            dialog.close();
+                          }
+                        }}
+                        className="px-4 py-1 mt-3 rounded bg-red-500 hover:bg-red-400 transition"
+                      >
+                        Close
+                      </button>
+                    </dialog>
                   </TableCell>
                 </TableRow>
               );
