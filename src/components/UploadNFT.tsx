@@ -4,8 +4,6 @@ import { useEthersSigner } from "../getSigner";
 import { ethers } from "ethers";
 import NFTMarketplaceABI from "../abi721.json";
 
-import { Input } from "./ui/input";
-
 import { Box, Button, IconButton, Snackbar, TextField } from "@material-ui/core";
 import Alert from "./Alert";
 import { useNavigate } from "react-router-dom";
