@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useEthersSigner } from "../../getSigner";
+import { useEthersSigner } from "../getSigner";
 import { ethers } from "ethers";
-import NFTMarketplaceABI from "../../abi721.json";
+import NFTMarketplaceABI from "../abi721.json";
 
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
+import { Input } from "./ui/input";
+import { Button } from "./ui/button";
 
 interface AddMoreNFTProps {
   className?: string;
@@ -57,9 +57,9 @@ export default function AddMoreNFT({
           url: "https://api.pinata.cloud/pinning/pinFileToIPFS",
           data: fileData,
           headers: {
-            pinata_api_key: "56129fb5d9c711b93b21",
+            pinata_api_key: "90dd85cf70c8f0e78726",
             pinata_secret_api_key:
-              "ed7f52ceca3f84275c3a659e31d962f0a3b4cc2e64495903dcd4bda1f04c2cce",
+              "0548bf0cd8d733add57055d9d3c7ae87f107d07c2f644fe2fe207381ad338eac",
           },
         });
 

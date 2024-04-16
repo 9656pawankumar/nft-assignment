@@ -20,7 +20,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../../components/ui/dialog";
-import UploadNFT from "../my/UploadNFT";
+import UploadNFT from "../UploadNFT";
 import {
   Drawer,
   DrawerClose,
@@ -31,7 +31,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "../../components/ui/drawer";
-import AddMoreNFT from "../my/AddMoreNFT";
+import AddMoreNFT from "../AddMoreNFT";
 
 export default function BrowseNFT() {
   const signer = useEthersSigner();
@@ -41,7 +41,7 @@ export default function BrowseNFT() {
     try {
       if (!signer) return;
       const contract = new ethers.Contract(
-        "0xe5515f30168bb173d155dcba4f1e26a69cf79b88",
+        "0xE5515F30168bb173D155Dcba4F1E26a69cf79b88",
         NFTMarketplaceABI,
         signer
       );
@@ -50,7 +50,7 @@ export default function BrowseNFT() {
 
       const collectionTokenURIs = await Promise.all(
         collections.map(async (collection: any) => {
-          const tokens = await contract.getTokensInCollection(collection.id); // tokenID, collecID, owner
+          const tokens = await contract.getTokensInCollection(collection.id); 
 
           const tokenURIs = await Promise.all(
             tokens.map(async (token: any) => {
@@ -86,7 +86,7 @@ export default function BrowseNFT() {
       <div className="flex flex-col justify-between mx-auto w-9/12">
         <div className="flex justify-between">
           <p className="my-auto">Browse NFTs</p>
-          <Drawer>
+          {/* <Drawer>
             <DrawerTrigger>
               <button className="p-3 rounded-md bg-cyan-600 hover:bg-cyan-800 transition-colors">
                 Add a collection
@@ -104,14 +104,12 @@ export default function BrowseNFT() {
                 <UploadNFT collectionLength={nftCollections?.length} />
               </DrawerFooter>
             </DrawerContent>
-          </Drawer>
+          </Drawer> */}
         </div>
         {/* <button onClick={() => }>Get all collections</button> */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {/* {nftCollections[0]?.tokens?.map((token: any) => (
-            <img className="rounded" width={500} src={token?.tokenURI} />
-          ))} */}
-        </div>
+  
+
+  
         <Table className="rounded p-6 bg-stone-800 mt-5 ">
           <TableCaption>Global NFT collection</TableCaption>
           <TableHeader className="text-white">
