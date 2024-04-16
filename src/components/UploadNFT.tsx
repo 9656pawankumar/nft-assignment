@@ -100,10 +100,10 @@ export default function UploadNFT({
 
       const collectionID = collectionName;
       if (collectionID?.length === 0) return;
-      handleClick(`Creating collection, please don't change screens will we alert you!`, 'warning');
+      handleClick(`Creating collection, please don't change screens till we alert you!`, 'warning');
       const transaction = await contract.createCollection(collectionID);
       await transaction.wait();
-      handleClick(`Your Collection is created! You can go back to landing page, refresh and the see your collection in the manage section!`, 'success');
+      handleClick(`Your Collection is created! Wait for 30 seconds, and go back to landing page to see your collection in the manage section!`, 'success');
     } catch (error) {
       console.error("Error in creating collection!", error);
     }
