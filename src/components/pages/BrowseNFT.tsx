@@ -11,26 +11,8 @@ import {
   TableRow,
 } from "../../components/ui/table";
 import { useEffect, useState } from "react";
-import { Button } from "../ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "../../components/ui/dialog";
+
 import UploadNFT from "../UploadNFT";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "../../components/ui/drawer";
 import AddMoreNFT from "../AddMoreNFT";
 
 interface Token {

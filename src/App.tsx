@@ -3,7 +3,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { WagmiProvider, useAccount } from "wagmi";
 import { config } from "./wagmi.config";
 
-import { Input } from "./components/ui/input";
 import WalletConnector from "./components/WalletConnector";
 import { createBrowserRouter, Route, RouterProvider, Routes } from "react-router-dom";
 import DeployNFT from "./components/pages/DeployNFT";

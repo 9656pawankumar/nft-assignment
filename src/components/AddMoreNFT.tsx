@@ -4,9 +4,6 @@ import { useEthersSigner } from "../getSigner";
 import { ethers } from "ethers";
 import NFTMarketplaceABI from "../abi721.json";
 
-import { Input } from "./ui/input";
-import { Button } from "./ui/button";
-
 interface AddMoreNFTProps {
   className?: string;
   collectionID: number;
