@@ -31,18 +31,21 @@ export default function AddMoreNFT({
         NFTMarketplaceABI,
         signer
       );
-
+      
       for (const tokenURI of tokenURIs) {
-        alert("NFT is being minted, please wait");
+        alert("NFT under build, PROCESSING...");
+        console.log("here before transacrion ------")
         const transaction = await contract.createToken(collectionId, tokenURI);
         await transaction.wait();
+        console.log("here aftertransacrion ------")
 
-        alert("NFT has been minted, please refresh");
 
-        console.log(`NFT Created with tokenURI: ${tokenURI}`);
+        alert("NFT successfully built!");
+
+        console.log(`NFT -------- Created -------- with -------- tokenURI: ${tokenURI}`);
       }
     } catch (error) {
-      console.error("Error minting NFTs:", error);
+      console.error("Error:", error);
     }
   }
 
@@ -111,30 +114,30 @@ export default function AddMoreNFT({
   };
 
   return (
-    <div className={className}>
-      <div className="flex gap-5 mt-5">
+    <div className={className} style={{ padding: "20px", backgroundColor: "#7fd1c0" }}>
+      <div style={{ display: "flex", justifyContent: "left", gap: "5px", marginBottom: "20px" }}>
         <input type="file" multiple onChange={handleFileChange} />
       </div>
-      <div className="grid grid-cols-3 gap-4 w-full">
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "20px", width: "100%" }}>
         {imagePreviews.map((preview: string, index: number) => (
-          // eslint-disable-next-line jsx-a11y/img-redundant-alt
           <img
             className="rounded"
             key={index}
             src={preview}
-            alt={`Image Preview ${index}`}
+            alt={`Preview ${index}`}
             style={{
-              width: "100px",
-              height: "100px",
-              objectFit: "cover",
-              marginTop: "10px",
+              width: "500px",
+              height: "500px",
+              objectFit: "contain",
+              borderRadius: "0px",
+              boxShadow: "0 4px 6px rgba(0,0,0,0.1)"
             }}
           />
         ))}
       </div>
-      <Button className="mt-4" onClick={handleUpload}>
-        Mint and add to collection
-      </Button>
+      <button type="button" onClick={handleUpload} style={{ marginTop: "5px", padding: "10px 30px", fontSize: "16px", borderRadius: "0px", backgroundColor: "#8f00ff", color: "white", border: "none", cursor: "pointer" }}>
+        ADD NFT TO YOUR COLLECTION
+      </button>
     </div>
   );
 }
