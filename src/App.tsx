@@ -5,8 +5,7 @@ import { config } from "./wagmi.config";
 
 import WalletConnector from "./components/WalletConnector";
 import { createBrowserRouter, Route, RouterProvider, Routes } from "react-router-dom";
-import DeployNFT from "./components/pages/DeployNFT";
-import BrowseNFT from "./components/pages/BrowseNFT";
+import BrowseNFT from "./components/ManageCollections";
 import { ConnectWallet } from "./ConnectWallet";
 import Snackbar from "@material-ui/core/Snackbar";
 import Alert from "./components/Alert";
@@ -22,7 +21,6 @@ function App() {
         <Route path="/" element={<WalletConnector />}/>  
           <Route path="/viewCollection" element={<BrowseNFT />}/> 
           <Route path="/landing" element={<Landing />}/>   
-          {/* <Route path="/addCollection" element={<DeployNFT />}/>       */}
         </Routes>
 
         <div className='row text-center' style={{justifyContent:"center"}}>

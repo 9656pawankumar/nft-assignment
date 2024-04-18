@@ -3,6 +3,8 @@ import axios from "axios";
 import { useEthersSigner } from "../getSigner";
 import { ethers } from "ethers";
 import NFTMarketplaceABI from "../abi721.json";
+import { Snackbar } from "@material-ui/core";
+import Alert from "./Alert";
 
 interface AddMoreNFTProps {
   className?: string;
@@ -10,7 +12,6 @@ interface AddMoreNFTProps {
 }
 
 export default function AddMoreNFT({
-  className,
   collectionID,
 }: AddMoreNFTProps) {
   const [selectedFiles, setSelectedFiles] = useState<any>([]);
@@ -30,16 +31,12 @@ export default function AddMoreNFT({
       );
       
       for (const tokenURI of tokenURIs) {
-        alert("NFT under build, PROCESSING...");
-        console.log("here before transacrion ------")
+        handleClick(`NFT is being created. Wait till we alert you again!`, 'warning');
         const transaction = await contract.createToken(collectionId, tokenURI);
         await transaction.wait();
-        console.log("here aftertransacrion ------")
 
 
-        alert("NFT successfully built!");
-
-        console.log(`NFT -------- Created -------- with -------- tokenURI: ${tokenURI}`);
+        handleClick(`NFT is created with tokenURI ${tokenURI}`, 'success');
       }
     } catch (error) {
       console.error("Error:", error);
@@ -65,7 +62,6 @@ export default function AddMoreNFT({
 
         const ipfsHash = responseData.data.IpfsHash;
         const fileUrl = "https://gateway.pinata.cloud/ipfs/" + ipfsHash;
-        // setNftImage(fileUrl);
 
         return fileUrl;
       } catch (err) {
@@ -73,16 +69,30 @@ export default function AddMoreNFT({
         return;
       }
     }
-    // else if (ipfsUrl) {
-    //   const urlParts = ipfsUrl.split("/");
-    //   ipfsHash = urlParts[urlParts.length - 1];
-    //   //not storing ipfsHAsh for now, its TODO
-    // }
+
     else {
-      console.log("No file or IPFS URL provided");
+      console.log("No file uploaded");
       return;
     }
   }
+
+  const [open, setOpen] = useState(false);
+  const [message, setMessage] = useState('');
+  const [severity, setSeverity] = useState('success');
+
+
+  const handleClose = (event:any, reason:any) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+}
+
+const handleClick = (msg:any, sev:any) => {
+  setMessage(msg);
+  setSeverity(sev);
+  setOpen(true);
+};
 
   const handleFileChange = (e: any) => {
     const files = Array.from(e.target.files);
@@ -96,7 +106,7 @@ export default function AddMoreNFT({
     e.preventDefault();
 
     if (selectedFiles.length === 0 && ipfsUrls.length === 0) {
-      console.log("No files or IPFS URLs provided");
+      handleClick(`No images uploaded!`, 'error');
       return;
     }
 
@@ -111,30 +121,39 @@ export default function AddMoreNFT({
   };
 
   return (
-    <div className={className} style={{ padding: "20px", backgroundColor: "#7fd1c0" }}>
-      <div style={{ display: "flex", justifyContent: "left", gap: "5px", marginBottom: "20px" }}>
-        <input type="file" multiple onChange={handleFileChange} />
-      </div>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "20px", width: "100%" }}>
-        {imagePreviews.map((preview: string, index: number) => (
-          <img
-            className="rounded"
-            key={index}
-            src={preview}
-            alt={`Preview ${index}`}
-            style={{
-              width: "500px",
-              height: "500px",
-              objectFit: "contain",
-              borderRadius: "0px",
-              boxShadow: "0 4px 6px rgba(0,0,0,0.1)"
-            }}
-          />
-        ))}
-      </div>
-      <button type="button" onClick={handleUpload} style={{ marginTop: "5px", padding: "10px 30px", fontSize: "16px", borderRadius: "0px", backgroundColor: "#8f00ff", color: "white", border: "none", cursor: "pointer" }}>
-        ADD NFT TO YOUR COLLECTION
-      </button>
+    <div style={{ padding: "20px", backgroundColor: "white", color: "black" }}>
+    <div style={{ display: "flex", justifyContent: "left", gap: "5px", marginBottom: "20px" }}>
+      <input type="file" multiple onChange={handleFileChange} />
     </div>
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "20px", width: "100%" }}>
+      {imagePreviews.map((preview: string, index: number) => (
+        <img
+          className="rounded"
+          key={index}
+          src={preview}
+          alt={`Preview ${index}`}
+          style={{
+            width: "500px",
+            height: "500px",
+            objectFit: "contain",
+            borderRadius: "0px",
+            boxShadow: "0 4px 6px rgba(0,0,0,0.1)"
+          }}
+        />
+      ))}
+    </div>
+    <button type="button" onClick={handleUpload} style={{ marginTop: "5px", padding: "10px 30px", fontSize: "16px", borderRadius: "0px", backgroundColor: "black", color: "white", border: "none", cursor: "pointer" }}>
+      ADD NFT TO YOUR COLLECTION
+    </button>
+    <Snackbar open={open}    autoHideDuration={3000} 
+        onClose={handleClose}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
+        <Alert onClose={handleClose} severity={severity}>
+          {message}
+        </Alert>
+      </Snackbar>
+  </div>
+  
+  
   );
 }

@@ -13,8 +13,8 @@ export const config = createConfig({
     walletConnect({projectId:'4f1f810cbef4e6b668d7f74d86c77cc8'})
   ],
   transports: {
-    // [mainnet.id]: http(),
-    // [base.id]: http(),
+    [mainnet.id]: http(),
+    [base.id]: http(),
     [sepolia.id]: http(),
   },
 })

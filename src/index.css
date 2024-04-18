@@ -19,7 +19,13 @@ body {
   animation-fill-mode: none;
   animation-play-state: running;
   animation-name: gradientTransform;
-  background-repeat: no-repeat;
+  /* background-repeat:repeat-y; */
+}
+
+.manageSection{
+   background-repeat:repeat-y;
+   background-image: url('./assets/bg.jpg');
+   background-size: 100% 100%;
 }
 
 code {
@@ -95,6 +101,26 @@ body {
   border: 1px solid #2e2e32;
   padding: 16px;
   margin: 16px;
+}
+
+.headingView {
+  background-color: white;
+  color: black;
+  font-size: 35px;
+  font-weight: bolder;
+  text-align: center;
+}
+
+.goBackLink {
+  float: left;
+  font-size: 20px;
+  margin-right: 10px !important;
+  cursor: pointer;
+  padding-top: 10px;
+}
+
+.headingText {
+  text-align: center;
 }
 
 .inline {

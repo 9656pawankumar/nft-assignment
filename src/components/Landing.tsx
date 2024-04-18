@@ -16,10 +16,7 @@ export function Landing() {
         color: 'black',
       });
     
-      const [addCollectionsStyle, setAddCollectionsStyle] = useState({
-        backgroundColor: 'white',
-        color: 'black',
-      });
+     
     
       const handleManageCollectionsEnter = () => {
         setManageCollectionsStyle({
@@ -39,6 +36,10 @@ export function Landing() {
         setisUploadClicked(false);
       };
 
+      const [addCollectionsStyle, setAddCollectionsStyle] = useState({
+        backgroundColor: 'white',
+        color: 'black',
+      });
       const handleAddCollectionsEnter = () => {
         setAddCollectionsStyle({
           backgroundColor: 'black',
