@@ -2,18 +2,24 @@ import { providers } from "ethers";
 import { useMemo } from "react";
 import type { Account, Chain, Client, Transport } from "viem";
 import { Config, useConnectorClient } from "wagmi";
-
 export function clientToSigner(client: Client<Transport, Chain, Account>) {
-  const { account, chain, transport } = client;
-  const network = {
-    chainId: chain.id,
-    name: chain.name,
-    ensAddress: chain.contracts?.ensRegistry?.address,
-  };
-  const provider = new providers.Web3Provider(transport, network);
-  const signer = provider.getSigner(account.address);
-  // console.log(provider)
-  return signer;
+  try {
+    const { account, chain, transport } = client;
+    if (!transport || !account?.address || !chain?.id) {
+      throw new Error("Invalid client configuration");
+    }
+    const network = {
+      chainId: chain.id,
+      name: chain.name,
+      ensAddress: chain.contracts?.ensRegistry?.address,
+    };
+    const provider = new providers.Web3Provider(transport, network);
+    const signer = provider.getSigner(account.address);
+    return signer;
+  } catch (error) {
+    console.error("Failed to create signer:", error);
+    return undefined;
+  }
 }
 
 /** Action to convert a Viem Client to an ethers.js Signer. */
