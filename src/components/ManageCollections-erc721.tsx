@@ -69,18 +69,11 @@ export default function BrowseNFT() {
     color: "white",
   });
 
-  // useEffect(() => {
-  //   getAllCollections();
-  // }, [signer]);
-
-  const MINUTE_MS = 1000;
   useEffect(() => {
-    const interval = setInterval(() => {
-      getAllCollections();
-    }, MINUTE_MS);
-  
-    return () => clearInterval(interval); 
-  }, [])
+    getAllCollections();
+  }, [signer]);
+
+
 
 
   const handleNavigateView = (route: any) => {

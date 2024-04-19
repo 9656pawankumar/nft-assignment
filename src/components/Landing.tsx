@@ -26,14 +26,13 @@ export function Landing() {
      
       const MINUTE_MS = 1000;
 
-      useEffect(() => {
-        const interval = setInterval(() => {
-          getAllCollectionsERC721();
-          getAllCollectionsERC1151();
-        }, MINUTE_MS);
       
-        return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
-      }, [])
+  useEffect(() => {
+    getAllCollectionsERC721();
+    getAllCollectionsERC1151();
+  }, [signer]);
+
+
     
       const handleManageCollectionsEnter = () => {
         setManageCollectionsStyle({
