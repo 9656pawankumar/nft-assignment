@@ -24,7 +24,7 @@ export function Landing() {
         color: 'black',
       });
      
-      const MINUTE_MS = 2000;
+      const MINUTE_MS = 1000;
 
       useEffect(() => {
         const interval = setInterval(() => {
