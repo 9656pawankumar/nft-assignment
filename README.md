@@ -2,7 +2,7 @@ NFT Marketplace
 
 Welcome to the NFT Marketplace, a decentralized platform built with React for trading and discovering unique digital assets. Leveraging the power of blockchain, our marketplace provides a secure and user-friendly environment for crypto enthusiasts and art collectors alike.
 
-NFT Marketplace is deployed at: [https://bitter-frost-4981.on.fleek.co](https://nameless-flower-2680.on.fleek.co/)
+NFT Marketplace is deployed at: [https://nameless-flower-2680.on.fleek.co](https://nameless-flower-2680.on.fleek.co/)
 
 
 
