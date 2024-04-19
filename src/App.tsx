@@ -5,11 +5,12 @@ import { config } from "./wagmi.config";
 
 import WalletConnector from "./components/WalletConnector";
 import { createBrowserRouter, Route, RouterProvider, Routes } from "react-router-dom";
-import BrowseNFT from "./components/ManageCollections";
+import BrowseNFT from "./components/ManageCollections-erc721";
+import BrowseNFT2 from "./components/ManageCollections-erc1151";
 import { ConnectWallet } from "./ConnectWallet";
 import Snackbar from "@material-ui/core/Snackbar";
 import Alert from "./components/Alert";
-import UploadNFT from "./components/UploadNFT";
+import UploadNFT from "./components/UploadNFT-erc721";
 import { Landing } from "./components/Landing";
 
 const queryClient = new QueryClient();
@@ -19,7 +20,8 @@ function App() {
     <div className='h-screen'>
         <Routes>      
         <Route path="/" element={<WalletConnector />}/>  
-          <Route path="/viewCollection" element={<BrowseNFT />}/> 
+          <Route path="/viewCollection721" element={<BrowseNFT />}/> 
+          <Route path="/viewCollection1151" element={<BrowseNFT2 />}/> 
           <Route path="/landing" element={<Landing />}/>   
         </Routes>
 
